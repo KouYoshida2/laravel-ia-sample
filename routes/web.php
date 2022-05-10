@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SampleController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/samples/index', [SampleController::class, 'index'])->name('samples.index');
+Route::get('samples/create', [SampleController::class, 'create'])->name('samples.create');
+Route::post('samples/store', [SampleController::class, 'store'])->name('samples.store');
+
+// サンプル用
+Route::resource('photos', PhotoController::class);
