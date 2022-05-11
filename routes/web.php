@@ -25,9 +25,16 @@ Route::get('samples/create', [SampleController::class, 'create'])->name('samples
 Route::post('samples/store', [SampleController::class, 'store'])->name('samples.store');
 
 // 課題用
-Route::get('text/index', [TextController::class, 'index'])->name('text.index');
-Route::get('text/create', [TextController::class, 'create'])->name('text.create');
-Route::post('text/store', [TextController::class, 'store'])->name('text.store');
+Route::get('texts/index', [TextController::class, 'index'])->name('texts.index');
+Route::get('texts/create', [TextController::class, 'create'])->name('texts.create');
+Route::post('texts/store', [TextController::class, 'store'])->name('texts.store');
 
 // サンプル用
 Route::resource('photos', PhotoController::class);
+
+
+// 0511課題
+Route::get('texts/{id}', [TextController::class, 'show'])->name('texts.show');
+Route::get('texts/{id}/edit', [TextController::class, 'edit'])->name('texts.edit');
+Route::post('texts/{id}', [TextController::class, 'update'])->name('texts.update');
+Route::post('texts/{id}/delete', [TextController::class, 'delete'])->name('texts.delete');

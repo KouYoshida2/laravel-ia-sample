@@ -10,6 +10,9 @@ class Text extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'email',
+        'price',
+        'is_visible'
     ];
 }
