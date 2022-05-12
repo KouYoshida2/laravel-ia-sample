@@ -12,13 +12,18 @@ editページです。<br>
   <input type="text" name="title" value="{{$text->title}}"><br>
   <label>内容</label>
   <input type="text" name="content" value="{{$text->content}}"><br>
-  <label>メールアドレスは変更できません</label>
-  {{$text->email}}<br>
+  <label>メールアドレス</label>
+  <input type="email" name="email" value="{{$text->email}}"><br>
   <label>料金</label>
   <input type="number" name="price" value="{{$text->price}}"><br>
-  <input id="visible" checked type="radio" name="is_visible" value=1>
+  <input id="visible" type="radio" name="is_visible" @if($text->is_visible==1)
+  checked
+  @endif
+  value=1>
   <label for="visible">表示する</label>
-  <input id="non_visible" type="radio" name="is_visible" value=0>
+  <input id="non_visible" type="radio" name="is_visible" @if($text->is_visible==0)
+  checked
+  @endif value=0>
   <label for="non_visible">非表示にする</label>
   <button>更新する</button>
 </form>
