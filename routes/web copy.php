@@ -5,7 +5,6 @@ use App\Http\Controllers\SampleController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TextController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +16,9 @@ use App\Http\Controllers\TextController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/samples/index', [SampleController::class, 'index'])->name('samples.index');
 Route::get('samples/create', [SampleController::class, 'create'])->name('samples.create');
@@ -36,13 +38,3 @@ Route::get('texts/{id}', [TextController::class, 'show'])->name('texts.show');
 Route::get('texts/{id}/edit', [TextController::class, 'edit'])->name('texts.edit');
 Route::post('texts/{id}', [TextController::class, 'update'])->name('texts.update');
 Route::post('texts/{id}/delete', [TextController::class, 'delete'])->name('texts.delete');
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__ . '/auth.php';

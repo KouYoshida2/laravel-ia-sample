@@ -13,6 +13,17 @@ class Text extends Model
         'content',
         'email',
         'price',
-        'is_visible'
+        'is_visible',
     ];
+
+    public function scopeVisible($query)
+    {
+        return $query->where('is_visible', 1);
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

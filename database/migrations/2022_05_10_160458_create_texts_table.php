@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->integer('price');
             $table->boolean('is_visible');
+            $table->unsignedBigInteger('user_id');
         });
     }
 

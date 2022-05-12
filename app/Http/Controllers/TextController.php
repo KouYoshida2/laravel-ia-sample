@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Text;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\TextRequest;
+use App\Services\EchoService;
 
 class TextController extends Controller
 {
     public function index()
     {
-        // エロくあんと
-        $allpost = text::all();
+        // エロクアント
+        $allpost = Text::all();
         // クエリビルダー
         $querybuilder = DB::table('texts')->get();
         $querybuilderfirst = DB::table('texts')->first();
@@ -20,20 +23,30 @@ class TextController extends Controller
 
         // $allpost = Text::where('title', 'like', 'タ%')->select('title')->get();
 
-        return view('texts.index', compact('allpost'));
+        $visibles = Text::Visible()->get();
+        $userTexts = User::find(1)->texts;
+        $user = Text::find(1)->user;
+
+        // テキストの一つ目のユーザー情報
+        // dd($user->name, $user->email, $user->password);
+
+        // ユーザー一つ目のテキスト情報
+        // dd($userTexts);
+
+
+
+        // 外部クラス
+        // EchoService::echoo();
+
+        return view('texts.index', compact('allpost', 'visibles', 'userTexts'));
     }
     public function create()
     {
         return view('texts.create');
     }
-    public function store(Request $request)
+    public function store(TextRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:2|max:50',
-            'content' => 'required|max:1000',
-            'email' => 'required|unique:texts',
-            'price' => 'required'
-        ]);
+
 
         text::create([
             'title' => $request['title'],
