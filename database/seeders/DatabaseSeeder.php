@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CommentSeeder::class,
+            LectureSeeder::class,
+            // LectureUserSeeder::class
         ]);
 
         // \App\Models\Product::factory(100)->create();

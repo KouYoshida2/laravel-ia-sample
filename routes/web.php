@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TextController;
+use App\Http\Controllers\LectureController;
+use App\Http\Controllers\ServiceContainerController;
 
 
 /*
@@ -36,6 +38,17 @@ Route::get('texts/{id}', [TextController::class, 'show'])->name('texts.show');
 Route::get('texts/{id}/edit', [TextController::class, 'edit'])->name('texts.edit');
 Route::post('texts/{id}', [TextController::class, 'update'])->name('texts.update');
 Route::post('texts/{id}/delete', [TextController::class, 'delete'])->name('texts.delete');
+
+// 0513課題
+Route::middleware(['auth'])->group(function () {
+    Route::get('lectures/index', [LectureController::class, 'index'])->name('lectures.index');
+    Route::post('lectures/index', [LectureController::class, 'store'])->name('lectures.store');
+    Route::get('lectures/edit', [LectureController::class, 'edit'])->name('lectures.edit');
+});
+
+
+
+Route::get('servicecontainertest/index', [ServiceContainerController::class, 'index'])->name('servicecontainer.index');
 
 Route::get('/', function () {
     return view('welcome');
