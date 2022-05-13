@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\ContainerTest;
 
-class TestProviders extends ServiceProvider
+class TestProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -13,7 +14,7 @@ class TestProviders extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('containertest', 'App\Services\ContainerTest');
     }
 
     /**

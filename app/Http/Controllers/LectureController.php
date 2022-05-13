@@ -6,19 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Lecture;
 use App\Models\User;
+use App\Facades\Test;
+
 
 class LectureController extends Controller
 {
 
     public function index()
     {
+        // dd(app());
+        $container_test = Test::serviceContainerTest();
+        // App\Facedes\TEST::echotest();
 
         // 取得中のレクチャー
         $userid = Auth::id();
         $nowlectures = User::findOrFail($userid)->lectures;
 
 
-        return view('lectures.index', compact('nowlectures'));
+        return view('lectures.index', compact('nowlectures', 'container_test'));
     }
     public function edit()
     {
